@@ -1,0 +1,85 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="GeneratorHasel.MainPage">
+
+    <ScrollView>
+        <VerticalStackLayout
+            Spacing="25"
+            Padding="30,0"
+            VerticalOptions="Start">
+
+            <Label
+                Text="HASLO"
+                FontSize="40"
+                />
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="50"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <CheckBox
+                    Grid.Column="0" Grid.Row="0"
+                    x:Name="IsMaleLitery"
+                />
+                <Label
+                    Grid.Column="1" Grid.Row="0"
+                    Text="male litery"
+                    FontSize="25"
+                />
+                <CheckBox
+                    Grid.Column="0" Grid.Row="1"
+                    x:Name="IsDuzeLitery"
+                />
+                <Label
+                    Grid.Column="1" Grid.Row="1"
+                    Text="Duze litery"
+                    FontSize="25"
+                />
+                <CheckBox
+                    Grid.Column="0" Grid.Row="2"
+                    x:Name="IsCyfry"
+                />
+                <Label
+                    Grid.Column="1" Grid.Row="2"
+                    Text="Cyfry"
+                    FontSize="25"
+                />
+                <CheckBox
+                    Grid.Column="0" Grid.Row="3"
+                    x:Name="IsSpecjalne"
+                />
+                <Label
+                    Grid.Column="1" Grid.Row="3"
+                    Text="Znaki specjalne"
+                    FontSize="25"
+                />
+                <Entry Grid.Column="0" Grid.Row="4"
+                WidthRequest="50"
+                x:Name="Dlugosc"/>
+                <Label
+                    Grid.Column="1" Grid.Row="4"
+                    Text="Dlugosc"
+                    FontSize="25"
+                />
+            </Grid>
+            <Button
+                Text="Generuj"
+                Clicked="OnGenerujClicked"
+                />
+            <Label
+                Text="Haslo"
+                x:Name="OutputLbl"
+                />
+
+        </VerticalStackLayout>
+    </ScrollView>
+
+</ContentPage>
