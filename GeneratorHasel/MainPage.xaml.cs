@@ -15,7 +15,7 @@ namespace GeneratorHasel
             new char[]{ 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z' },
             new char[]{'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'},
             new char[]{'0','1', '2', '3', '4', '5', '6', '7', '8', '9'},
-            new char[]{ '!', '@', '#', '$', '%', '^', '&', '*', '(', ')' }
+            new char[]{ '!', '@', '#', '$', '%', '^', '&', '*', '(', ')','[',']','/','<','>','?','|','`','~','\\'}
         };
     private void OnGenerujClicked(object sender, EventArgs e)
         {
@@ -29,28 +29,38 @@ namespace GeneratorHasel
                 Types[2] = true;
             if (IsSpecjalne.IsChecked)
                 Types[3] = true;
-            if (!Types[0] && !Types[1] && !Types[2] && !Types[3]&&Dlugosc.Text!="") { }
+            if (!Types[0] && !Types[1] && !Types[2] && !Types[3]||Dlugosc.Text=="") { }
             else {
+                
                 OutputLbl.Text = Output;
                 int PasLenght;
-                int.TryParse(Dlugosc.Text, out PasLenght);
-                int TypeRand;
-                int CharRand;
-                for (int i = 0; i < PasLenght; i++)
+                bool czyLiczba = int.TryParse(Dlugosc.Text, out PasLenght);
+                if (czyLiczba&&PasLenght>3)
                 {
-                    TypeRand = TypeSign.Next(0, 4);
-                    if (Types[TypeRand])
+                    int TypeRand;
+                    int CharRand;
+                    for (int i = 0; i < PasLenght; i++)
                     {
-                        CharRand = CharSign.Next(0, TabZnakow[TypeRand].Length);
+                        TypeRand = TypeSign.Next(0, 4);
+                        if (Types[TypeRand])
+                        {
+                            CharRand = CharSign.Next(0, TabZnakow[TypeRand].Length);
 
-                        Output += TabZnakow[TypeRand][CharRand];
+                            Output += TabZnakow[TypeRand][CharRand];
+                        }
+                        else
+                            i--;
                     }
-                    else
-                        i--;
-                }
-                OutputLbl.Text = Output;
+                    OutputLbl.Text = Output;
 
-                SemanticScreenReader.Announce(OutputLbl.Text);
+                    SemanticScreenReader.Announce(OutputLbl.Text);
+                }
+                else
+                {
+                    OutputLbl.Text = "Hasla nie da sie wygenerowac";
+                    SemanticScreenReader.Announce(OutputLbl.Text);
+
+                }
             }
         }
     }
